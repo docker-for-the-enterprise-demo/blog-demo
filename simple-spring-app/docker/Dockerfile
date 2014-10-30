@@ -1,0 +1,24 @@
+# Specifies the starting image from which this docker image will be built
+FROM dockerfile/ubuntu
+
+# Necessary to get the latest packages for ubuntu
+RUN apt-get update
+
+# Notice the -y switch to ensure that any prompts are bypassed
+RUN apt-get install -y openjdk-7-jdk
+
+RUN apt-get install -y maven git
+
+RUN git clone --recursive https://github.com/docker-for-the-enterprise-demo/blog-demo.git
+
+# The workdir resets after each intermediate RUN (each RUN is processed in its
+# own image) so group cd and commands together
+RUN cd /root/blog-demo && git checkout blog1-initial 
+
+RUN cd /root/blog-demo/simple-spring-app/app && mvn package
+
+# CMD is not run as part of the image, but rather is the default command that
+# will be executed when a container is executed.
+CMD java -jar /root//blog-demo/simple-spring-app/app/target/simple-app-0.0.1-SNAPSHOT.jar
+
+
