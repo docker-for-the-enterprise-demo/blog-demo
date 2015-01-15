@@ -17,8 +17,12 @@ RUN cd /root/blog-demo && git checkout blog1-initial
 
 RUN cd /root/blog-demo/simple-spring-app/app && mvn package
 
+RUN mkdir -p /var/opt/downsample/download
+
+RUN mkdir -p /var/opt/downsample/static
+
 # CMD is not run as part of the image, but rather is the default command that
 # will be executed when a container is executed.
-CMD java -jar /root//blog-demo/simple-spring-app/app/target/simple-app-0.0.1-SNAPSHOT.jar
+CMD java -jar /root/blog-demo/simple-spring-app/app/target/simple-app-0.0.1-SNAPSHOT.jar
 
 

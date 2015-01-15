@@ -65,11 +65,11 @@ public class DownloadImageTask {
 			if (m.matches()) {
 				imgFormat = m.group(1);
 			}
-			if (imgFormat == null) {
-				imgFormat = FilenameUtils.getExtension(url);
-			}
 		} catch (Exception ex) {
 			// do nothing... REGEX just failed, no real problem.
+		}
+		if (imgFormat == null) {
+			imgFormat = FilenameUtils.getExtension(url);
 		}
 		if (imgFormat == null) {
 			imgFormat = "png";

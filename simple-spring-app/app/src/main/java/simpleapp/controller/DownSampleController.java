@@ -69,6 +69,10 @@ public class DownSampleController {
 			} catch (Exception ex) {
 				logger.warn("BOOM baby!", ex);
 			}
+
+			cacheService.cache(imgUrl, response);
+		} else {
+			logger.info("Returning cached response");
 		}
 
 		return response;
