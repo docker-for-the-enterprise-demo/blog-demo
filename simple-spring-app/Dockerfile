@@ -1,7 +1,7 @@
 # Specifies the starting image from which this docker image will be
 # built.  We want this to be as small as possible while still
 # providing the required dependencies.
-FROM alexeiled/java7-maven-git
+FROM jlrigau/maven-git
 
 # The sources are added directly into the image from the git working
 # tree
